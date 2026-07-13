@@ -5,7 +5,7 @@ public class MenuManager : MonoBehaviour
 {
     public void LoadStage1()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Stage1");
     }
 
     public void LoadStage2()

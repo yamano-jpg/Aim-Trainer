@@ -47,6 +47,8 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
+        GameManager gm = FindObjectOfType<GameManager>();
+        if (gm != null && gm.isGameOver) return;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;
@@ -57,6 +59,7 @@ public class MouseLook : MonoBehaviour
                 Cursor.visible = true;
                 if (settingsPanel != null)
                     settingsPanel.SetActive(true);
+                    if (gm != null) gm.isPaused = true;
             }
             else
             {
@@ -64,6 +67,7 @@ public class MouseLook : MonoBehaviour
                 Cursor.visible = false;
                 if (settingsPanel != null)
                     settingsPanel.SetActive(false);
+                    if (gm != null) gm.isPaused = false;
             }
         }
 
