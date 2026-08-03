@@ -4,7 +4,7 @@ using TMPro;
 
 public class MouseLook : MonoBehaviour
 {
-    public float valorantSensitivity = 0.4f;
+    public float sensitivity = 0.4f;
     public Slider sensitivitySlider;
     public Transform playerBody;
     public GameObject settingsPanel;
@@ -18,14 +18,15 @@ public class MouseLook : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        unitySensitivity = valorantSensitivity * 7f;
+        sensitivity = MenuSettings.sensitivity;
+        unitySensitivity = sensitivity * 7f;
 
         if (settingsPanel != null)
             settingsPanel.SetActive(false);
 
         if (sensitivitySlider != null)
         {
-            sensitivitySlider.value = valorantSensitivity;
+            sensitivitySlider.value = sensitivity;
             sensitivitySlider.onValueChanged.AddListener(OnSensitivityChanged);
         }
 
@@ -34,15 +35,15 @@ public class MouseLook : MonoBehaviour
 
     void OnSensitivityChanged(float value)
     {
-        valorantSensitivity = value;
-        unitySensitivity = valorantSensitivity * 7f;
+        sensitivity = value;
+        unitySensitivity = sensitivity * 7f;
         UpdateSensText();
     }
 
     void UpdateSensText()
     {
         if (sensValueText != null)
-            sensValueText.text = "Sensitivity: " + valorantSensitivity.ToString("F2");
+            sensValueText.text = "Sensitivity: " + sensitivity.ToString("F2");
     }
 
     void Update()

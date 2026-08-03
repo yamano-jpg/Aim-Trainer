@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        AudioSource bgm = FindObjectOfType<AudioSource>();
+    if (bgm != null) bgm.volume = MenuSettings.bgmVolume;
+    
         timeLeft = timeLimit;
         UpdateScoreText();
         UpdateTimerText();
