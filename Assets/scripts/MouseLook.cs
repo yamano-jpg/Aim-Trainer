@@ -16,8 +16,6 @@ public class MouseLook : MonoBehaviour
 
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
         sensitivity = MenuSettings.sensitivity;
         unitySensitivity = sensitivity * 7f;
 
@@ -43,13 +41,15 @@ public class MouseLook : MonoBehaviour
     void UpdateSensText()
     {
         if (sensValueText != null)
-            sensValueText.text = "Sensitivity: " + sensitivity.ToString("F2");
+            sensValueText.text = sensitivity.ToString("F2");
     }
 
     void Update()
     {
         GameManager gm = FindObjectOfType<GameManager>();
         if (gm != null && gm.isGameOver) return;
+        if (gm != null && !gm.isStarted) return;
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             isPaused = !isPaused;

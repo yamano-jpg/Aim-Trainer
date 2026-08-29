@@ -3,18 +3,15 @@ using UnityEngine;
 public class TargetHit : MonoBehaviour
 {
     public TargetSpawner spawner;
-    public AudioClip hitSound; // 効果音
+    public AudioClip hitSound;
     private GameManager gameManager;
-    private AudioSource audioSource;   
-
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
-        audioSource = FindObjectOfType<AudioSource>();
+        gameManager = FindAnyObjectByType<GameManager>();
     }
 
-    void OnMouseDown()
+    public void Hit()
     {
         if (spawner != null)
             spawner.SpawnTarget();
@@ -22,8 +19,8 @@ public class TargetHit : MonoBehaviour
         if (gameManager != null)
             gameManager.AddScore();
 
-         if (hitSound != null)
-        AudioSource.PlayClipAtPoint(hitSound, transform.position, MenuSettings.seVolume);
+        if (hitSound != null)
+            AudioSource.PlayClipAtPoint(hitSound, transform.position, MenuSettings.seVolume);
 
         Destroy(gameObject);
     }

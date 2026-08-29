@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     public GameObject resultPanel;
     public TextMeshProUGUI resultScoreText;
     public GameObject crosshair;
+    public GameObject startPanel;
 
     public float timeLimit = 60f;
 
@@ -16,6 +17,7 @@ public class GameManager : MonoBehaviour
     float timeLeft;
     public bool isGameOver = false;
     public bool isPaused = false;
+    public bool isStarted = false;
 
     void Start()
     {
@@ -32,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        if (!isStarted) return;
         if (isGameOver) return;
         if (isPaused) return;
 
@@ -47,11 +50,27 @@ public class GameManager : MonoBehaviour
         UpdateTimerText();
     }
 
+    public void StartGame() 
+    {
+        isStarted = true;
+        Time.timeScale = 1f;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
+        if (startPanel != null)
+            startPanel.SetActive(false);
+    }
+
     public void AddScore()
     {
         if (isGameOver) return;
         score++;
         UpdateScoreText();
+    }
+
+    public int GetScore()
+    {
+        return score;
     }
 
     void UpdateScoreText()
