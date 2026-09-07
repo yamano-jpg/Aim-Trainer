@@ -10,11 +10,7 @@ public class MenuManager : MonoBehaviour
 
     public void LoadStage2()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Stage2");
     }
-
-    public void LoadStage3()
-    {
-        SceneManager.LoadScene("SampleScene");
-    }
+        
 }
